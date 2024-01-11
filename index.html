@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissors">scissors</button>
+    <div id="results"></div>
     <script>
         function getComputerChoice() {
 
@@ -26,51 +31,69 @@
         function playRound(playerSelection, computerSelection) {
 
             playerSelection = playerSelection.toLowerCase();
+            computerSelection = getComputerChoice();
 
-            console.log("you: " + playerSelection + "\ncomputer: " + computerSelection);
+            //console.log("you: " + playerSelection + "\ncomputer: " + computerSelection);
+            results.textContent = "You: " + playerSelection + " Computer: " + computerSelection + "\n";
 
-            if (playerSelection == "rock" && computerSelection == "paper") {
+            if (playerScore == 5) {
+                alert("Congrats you won!");
+            }
 
-                console.log("you lose paper beats rock");
+            else if (computerScore == 5) {
+                alert("You lost, try again");
+            }
+            
+            else if (playerSelection == "rock" && computerSelection == "paper") {
+
+                //console.log("you lose paper beats rock");
+                results.textContent += "You lose paper beats rock";
                 computerScore++;
 
             }
             else if (playerSelection == "rock" && computerSelection == "scissors") {
 
-                console.log("you win rock beats scissors");
+                //console.log("you win rock beats scissors");
+                results.textContent += "You win rock beats scissors";
                 playerScore++;
 
             }
             else if (playerSelection == "paper" && computerSelection == "scissors") {
 
-                console.log("you lose scissors beat paper");
+                //console.log("you lose scissors beat paper");
+                results.textContent += "You lose scissors beat paper";
                 computerScore++;
 
             }
             else if (playerSelection == "paper" && computerSelection == "rock") {
 
-                console.log("you win paper beats rock");
+                //console.log("you win paper beats rock");
+                results.textContent += "You win paper beats rock";
                 playerScore++;
 
             }
             else if (playerSelection == "scissors" && computerSelection == "paper") {
 
-                console.log("you win scissors beat paper");
+                //console.log("you win scissors beat paper");
+                results.textContent += "You win scissors beat paper"
                 playerScore++;
 
             }
             else if (playerSelection == "scissors" && computerSelection == "rock") {
 
-                console.log("you lose rock beats scissors");
+                //console.log("you lose rock beats scissors");
+                results.textContent += "You lose rock beats scissors";
                 computerScore++;
 
             }
             else if (playerSelection == computerSelection) {
-                console.log("draw");
+                //console.log("draw");
+                results.textContent += "Draw";
 
             }
-
-            console.log("Your score: " + playerScore + "\nComputer score: " + computerScore);
+            
+            //console.log("Your score: " + playerScore + "\nComputer score: " + computerScore);
+            results.textContent += "\nYour score: " + playerScore + " Computer score: " + computerScore;
         }
 
         let playerSelection;
@@ -78,7 +101,7 @@
 
         let playerScore = 0;
         let computerScore = 0;
-
+        /*
         function game() {
 
             for(let i = 1; playerScore <= 5 || computerScore <= 5; i++) {
@@ -96,14 +119,20 @@
                     console.log("Computer won");
                     return;
                 }
-
             }
-
-
             }
 
         game();
+        */
+        let rock = document.querySelector("#rock");
+        let paper = document.querySelector("#paper");
+        let scissors = document.querySelector("#scissors");
 
+        rock.addEventListener("click", () => playRound("rock", computerSelection));
+        paper.addEventListener("click", () => playRound("paper", computerSelection));
+        scissors.addEventListener("click", () => playRound("scissors", computerSelection));
+
+        let results = document.querySelector("#results");
     </script>
 </body>
 </html>
